@@ -7,12 +7,9 @@ def get_rectangle(length_of_rectangle: int, width_of_rectangle: int) -> str:
         return("o")
     
     rectangle = []
-    if length_of_rectangle > 1:
-        first_line = 'o' + ('-' * (length_of_rectangle - 2)) + 'o'
-    else:
-        first_line = 'o'
+    first_line = ('o' + ('-' * (length_of_rectangle - 2))) + 'o' if length_of_rectangle > 1 else 'o'
     rectangle.append(first_line)
-
+    
     # Construire les lignes du milieu
     for _ in range(width_of_rectangle - 2):
         middle_line = '|' + (' ' * (length_of_rectangle - 2)) + '|'
@@ -26,13 +23,13 @@ def get_rectangle(length_of_rectangle: int, width_of_rectangle: int) -> str:
 
 # Gestion d'erreurs :
 
-def is_valid_length(arguments: str) -> bool:
+def is_valid_length(arguments):
     if len(arguments) != 2:
         print("Erreur : Merci d'indiquer deux arguments qui sont des chiffres")
         return False
     return True
 
-def is_valid_rectangle(length_of_rectangle: str, width_of_rectangle: str) -> bool:
+def is_valid_rectangle(length_of_rectangle, width_of_rectangle):
     if not length_of_rectangle.isdigit():
         print("Erreur : Merci d'indiquer la longueur avec un chiffre entier")
         return False
@@ -42,12 +39,12 @@ def is_valid_rectangle(length_of_rectangle: str, width_of_rectangle: str) -> boo
     return True
 
 # Récupération de données :
-def get_arguments() -> list[str]:
+def get_arguments():
     arguments = sys.argv[1:]
     return arguments
 
 # Résolution :
-def display_rectangle() -> None:
+def display_rectangle():
     arguments = get_arguments()
 
     if not is_valid_length(arguments):
