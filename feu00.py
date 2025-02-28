@@ -26,7 +26,7 @@ def get_rectangle(length_of_rectangle: int, width_of_rectangle: int) -> str:
 
 # Gestion d'erreurs :
 
-def is_valid_length(arguments: str) -> bool:
+def is_valid_length(arguments: list[str]) -> bool:
     if len(arguments) != 2:
         print("Erreur : Merci d'indiquer deux arguments qui sont des chiffres")
         return False
