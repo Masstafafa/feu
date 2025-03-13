@@ -31,7 +31,7 @@ def get_algo_shunting_yard(operator: str) -> int:
         return 2
     return 0  # pour les parenthèses
 
-def infix_reverse_polish_notation(tokens: list[str]) -> list[str]:
+def get_reverse_polish_notation(tokens: list[str]) -> list[str]:
     output_queue = []
     operator_stack = []
     
@@ -104,7 +104,7 @@ def calculate_the_operation() -> None:
     calculation = arguments[0]
 
     tokens = tokenize_calculation(calculation)
-    polish_notation = infix_reverse_polish_notation(tokens)
+    polish_notation = get_reverse_polish_notation(tokens)
     result = evaluate_reverse_polish_notation(polish_notation)
     
     print(f"Résultat final: {result}")  # Ajout du print
