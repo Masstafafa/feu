@@ -19,8 +19,10 @@ def find_position_on_board(board_list, board_to_find_list):
     for y in range(len(board_list)):
         for x in range(len(board_list[0])):
             if check_match(board_list, board_to_find_list, x, y):
-                return(f"Trouvé !\nCoordonnées : {x},{y}")
-    return("Introuvable")
+                print(f"Trouvé !\nCoordonnées : {x},{y}")
+                print_overlay_board(board_list, board_to_find_list, x, y)
+                return
+    print("Introuvable")
 
 def check_match(board, board_to_find, x, y):
     for i in range(len(board_to_find)):
@@ -33,7 +35,25 @@ def check_match(board, board_to_find, x, y):
                 return False
     return True
 
-  
+def print_overlay_board(board, board_to_find, found_x, found_y):
+    for i in range(len(board)):
+        row_str = ""
+        for j in range(len(board[0])):  # Utilisation de len(board[0]) pour les colonnes
+            # Vérifie si la cellule fait partie de la zone du motif trouvé
+            if (found_y <= i < found_y + len(board_to_find) and 
+                found_x <= j < found_x + len(board_to_find[0])):
+                
+                # Position relative dans le motif
+                rel_i = i - found_y
+                rel_j = j - found_x
+                pattern_char = board_to_find[rel_i][rel_j]
+                
+                # Affiche le caractère uniquement si le pattern le spécifie
+                row_str += board[i][j] if pattern_char != " " else "-"
+            else:
+                row_str += "-"
+        print(row_str)
+        
 # Gestion d'erreurs :
 
 def is_valid_length(arguments: list[str]) -> bool:
@@ -60,7 +80,7 @@ def get_arguments() -> list[str]:
 # Résolution :
 
 
-def resolve():
+def display_coordonates_and_pattern():
     arguments = get_arguments()
 
     if not is_valid_length(arguments):
@@ -75,7 +95,8 @@ def resolve():
     board_list = transform_board_into_list_of_lists(board)
     board_to_find_list = transform_board_into_list_of_lists(board_to_find)
 
-    print(find_position_on_board(board_list, board_to_find_list))
+    find_position_on_board(board_list, board_to_find_list)
+
 
 # Affichage :
-resolve()
+display_coordonates_and_pattern()
