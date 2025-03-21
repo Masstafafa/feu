@@ -14,16 +14,6 @@ def transform_board_into_list_of_lists(board):
         board_list.append(char_list)
     return board_list
 
-
-def find_position_on_board(board_list, board_to_find_list):
-    for y in range(len(board_list)):
-        for x in range(len(board_list[0])):
-            if check_match(board_list, board_to_find_list, x, y):
-                print(f"Trouvé !\nCoordonnées : {x},{y}")
-                print_overlay_board(board_list, board_to_find_list, x, y)
-                return
-    print("Introuvable")
-
 def check_match(board, board_to_find, x, y):
     for i in range(len(board_to_find)):
         for j in range(len(board_to_find[0])):
@@ -35,7 +25,7 @@ def check_match(board, board_to_find, x, y):
                 return False
     return True
 
-def print_overlay_board(board, board_to_find, found_x, found_y):
+def display_overlay_board(board, board_to_find, found_x, found_y):
     for i in range(len(board)):
         row_str = ""
         for j in range(len(board[0])):  # Utilisation de len(board[0]) pour les colonnes
@@ -53,6 +43,15 @@ def print_overlay_board(board, board_to_find, found_x, found_y):
             else:
                 row_str += "-"
         print(row_str)
+
+def find_position_on_board(board_list, board_to_find_list):
+    for y in range(len(board_list)):
+        for x in range(len(board_list[0])):
+            if check_match(board_list, board_to_find_list, x, y):
+                print(f"Trouvé !\nCoordonnées : {x},{y}")
+                display_overlay_board(board_list, board_to_find_list, x, y)
+                return
+    print("Introuvable")
         
 # Gestion d'erreurs :
 
